@@ -1,12 +1,12 @@
 package com.youngdatafan.portal.model.management.datasource.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.youngdatafan.dataintegration.core.model.Result;
 import com.youngdatafan.dataintegration.core.util.JsonUtils;
 import com.youngdatafan.dataintegration.core.util.StatusCode;
 import com.youngdatafan.dataintegration.core.util.json.JSONLinkedObject;
 import com.youngdatafan.dataintegration.core.util.json.XML;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.youngdatafan.portal.model.management.datasource.dto.DataSourceListDTO;
 import com.youngdatafan.portal.model.management.datasource.dto.DatasourceDTO;
 import com.youngdatafan.portal.model.management.datasource.dto.DatasourceParamsDTO;
@@ -21,15 +21,8 @@ import com.youngdatafan.portal.model.management.datasource.vo.JCDataSourceVO;
 import com.youngdatafan.portal.model.management.datasource.vo.ParameterVo;
 import com.youngdatafan.portal.model.management.util.jdbc.DatasourceExplainDTO;
 import com.youngdatafan.portal.model.management.util.jdbc.JdbcUtils;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.database.DatabaseTestResults;
 import org.pentaho.di.core.encryption.KettleTwoWayPasswordEncoder;
@@ -38,6 +31,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * <p>****************************************************************************</p>
@@ -75,7 +76,7 @@ public class DatasourceServiceImpl implements DatasourceService {
 
         datasource.setDsPassword(encodePassword);
         for (Map.Entry<String, String> entry : datasourceTypes.entrySet()
-        ) {
+                ) {
             if (entry.getKey().equals(datasource.getDsType())) {
                 datasource.setDriverClassName(entry.getValue());
                 break;
@@ -140,7 +141,7 @@ public class DatasourceServiceImpl implements DatasourceService {
         List<DatasourceTypeDTO> list = new ArrayList<>();
 
         for (Map.Entry<String, String> entry : datasourceTypes.entrySet()
-        ) {
+                ) {
             DatasourceTypeDTO datasourceTypeDTO = new DatasourceTypeDTO();
             datasourceTypeDTO.setDatasourceTypeName(entry.getKey());
             list.add(datasourceTypeDTO);
@@ -178,7 +179,7 @@ public class DatasourceServiceImpl implements DatasourceService {
             String driverName = null;
 
             for (Map.Entry<String, String> entry : datasourceTypes.entrySet()
-            ) {
+                    ) {
                 if (entry.getKey().equals(datasourceConnectorVO.getDsType())) {
                     driverName = entry.getValue();
                     break;
@@ -320,7 +321,7 @@ public class DatasourceServiceImpl implements DatasourceService {
         List<ParameterVo> optionsParameterVo = jcDataSourceVO.getDsConnectorSetting().getOptionsParameterVo();
         List<ConnectionDetailVO.ConnectionBean.AttributesBean.AttributeBean> attributeBeanLis = new ArrayList<>();
 
-        for (ParameterVo parameterVo: optionsParameterVo) {
+        for (ParameterVo parameterVo : optionsParameterVo) {
             ConnectionDetailVO.ConnectionBean.AttributesBean.AttributeBean attributeBean = new ConnectionDetailVO.ConnectionBean.AttributesBean.AttributeBean();
             attributeBean.setCode(parameterVo.getCode());
             attributeBean.setAttribute(parameterVo.getAttribute());
@@ -341,7 +342,7 @@ public class DatasourceServiceImpl implements DatasourceService {
         connectionDetailVO.setConnection(connectionBean);
         String projectFile = StringEscapeUtils.unescapeXml(JsonUtils.toString(connectionDetailVO));
         projectFile = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-            + XML.toString(new JSONLinkedObject(projectFile));
+                + XML.toString(new JSONLinkedObject(projectFile));
         DatabaseMeta databaseMeta = new DatabaseMeta(projectFile);
         DatabaseTestResults databaseTestResults = databaseMeta.testConnectionSuccess();
         if (!databaseTestResults.isSuccess()) {

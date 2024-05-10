@@ -7,7 +7,7 @@ import com.youngdatafan.di.run.management.steps.csvinput.vo.FieldVO;
 import com.youngdatafan.di.run.management.steps.utils.TypeCastUtils;
 import com.github.vfss3.FileServerConfig;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.vfs2.FileObject;
 import org.junit.Test;
 import org.pentaho.di.core.Const;

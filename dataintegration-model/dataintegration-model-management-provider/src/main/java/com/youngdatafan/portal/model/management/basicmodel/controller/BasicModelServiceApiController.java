@@ -1,8 +1,8 @@
 package com.youngdatafan.portal.model.management.basicmodel.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.youngdatafan.dataintegration.core.model.Result;
 import com.youngdatafan.dataintegration.core.util.StatusCode;
-import com.github.pagehelper.PageInfo;
 import com.youngdatafan.portal.model.management.basicmodel.api.BasicModelServiceApi;
 import com.youngdatafan.portal.model.management.basicmodel.dto.AllColumnDTO;
 import com.youngdatafan.portal.model.management.basicmodel.dto.BasicModelAndMetaDataDTO;
@@ -19,19 +19,21 @@ import com.youngdatafan.portal.model.management.basicmodel.vo.UpdateBasicModelVO
 import com.youngdatafan.portal.model.management.common.entity.ModelDTO;
 import com.youngdatafan.portal.model.management.datasource.dto.DatasourceDTO;
 import com.youngdatafan.portal.model.management.util.excel.Importer;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+
 /**
+ * @since 2024
  * <p>****************************************************************************</p>
  * <ul style="margin:15px;">
  * <li>Description : description</li>
@@ -39,17 +41,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
  * <li>Creation    : 2020/2/10 4:25 PM</li>
  * <li>Author      : ksice_xt</li>
  * </ul>
- * <p>****************************************************************************</p>
+ * <p>****************************************************************************</p>.
  */
 @RestController
 @RequestMapping("/basicModel")
 public class BasicModelServiceApiController implements BasicModelServiceApi {
 
     @Resource
-    BasiceModelService basiceModelService;
+    private BasiceModelService basiceModelService;
 
     @Resource
-    Importer importer;
+    private Importer importer;
 
     @Override
     public Result<DatasourceDTO, Object> add(String userId, AddBasicModelVO addBasicModelVO) {
@@ -187,6 +189,6 @@ public class BasicModelServiceApiController implements BasicModelServiceApi {
     @Override
     public Result<List<Map<String, Object>>, Object> testPreview(String userId, TestPreviewVO testPreviewVO) {
         return basiceModelService.testPreview(userId, testPreviewVO.getDatasourceId(),
-            testPreviewVO.getMetaDatas(), testPreviewVO.getModelFilter(), testPreviewVO.getTableName());
+                testPreviewVO.getMetaDatas(), testPreviewVO.getModelFilter(), testPreviewVO.getTableName());
     }
 }

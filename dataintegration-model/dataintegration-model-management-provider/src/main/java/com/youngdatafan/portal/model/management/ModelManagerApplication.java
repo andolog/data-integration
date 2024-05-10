@@ -3,19 +3,19 @@ package com.youngdatafan.portal.model.management;
 import com.youngdatafan.portal.model.management.config.DefaultDatasource;
 import com.youngdatafan.portal.model.management.datasource.dto.DatasourceDTO;
 import com.youngdatafan.portal.model.management.datasource.mapper.DatasourceMapper;
-import java.util.Date;
-import java.util.UUID;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.pentaho.di.core.encryption.KettleTwoWayPasswordEncoder;
-import org.pentaho.di.core.encryption.TwoWayPasswordEncoderInterface;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.util.StringUtils;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * 系统管理启动Main

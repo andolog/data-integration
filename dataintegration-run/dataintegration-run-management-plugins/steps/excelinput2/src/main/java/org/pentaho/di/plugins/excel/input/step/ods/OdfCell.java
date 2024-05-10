@@ -22,13 +22,13 @@
 
 package org.pentaho.di.plugins.excel.input.step.ods;
 
-import java.sql.Date;
-import java.util.TimeZone;
-
 import org.odftoolkit.odfdom.doc.table.OdfTableCell;
 import org.pentaho.di.core.spreadsheet.KCell;
 import org.pentaho.di.core.spreadsheet.KCellType;
 import org.pentaho.di.core.util.Utils;
+
+import java.sql.Date;
+import java.util.TimeZone;
 
 public class OdfCell implements KCell {
 

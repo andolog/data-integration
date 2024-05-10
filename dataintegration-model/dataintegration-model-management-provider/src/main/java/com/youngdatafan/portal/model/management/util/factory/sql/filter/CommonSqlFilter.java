@@ -22,7 +22,7 @@ public class CommonSqlFilter {
             return;
         }
 
-        if(org.apache.commons.lang.StringUtils.isBlank(modelFilterVO.getRelation())){
+        if(org.apache.commons.lang3.StringUtils.isBlank(modelFilterVO.getRelation())){
             // 默认 and
             modelFilterVO.setRelation("AND");
         }

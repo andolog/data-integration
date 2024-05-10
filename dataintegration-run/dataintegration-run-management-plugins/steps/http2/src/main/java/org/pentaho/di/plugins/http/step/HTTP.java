@@ -23,9 +23,11 @@
 package org.pentaho.di.plugins.http.step;
 
 import com.google.common.annotations.VisibleForTesting;
-import org.apache.commons.lang.StringUtils;
-import org.apache.http.*;
-import org.apache.http.client.AuthCache;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.http.Header;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.protocol.HttpClientContext;
@@ -35,7 +37,7 @@ import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleStepException;
@@ -47,7 +49,11 @@ import org.pentaho.di.core.util.Utils;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
-import org.pentaho.di.trans.step.*;
+import org.pentaho.di.trans.step.BaseStep;
+import org.pentaho.di.trans.step.StepDataInterface;
+import org.pentaho.di.trans.step.StepInterface;
+import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.step.StepMetaInterface;
 
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -143,7 +149,7 @@ public class HTTP extends BaseStep implements StepInterface {
         if ( StringUtils.isNotBlank( data.realProxyHost ) ) {
           HttpHost target = new HttpHost( uri.getHost(), uri.getPort(), uri.getScheme() );
           // Create AuthCache instance
-          AuthCache authCache = new BasicAuthCache();
+          BasicAuthCache authCache = new BasicAuthCache();
           // Generate BASIC scheme object and add it to the local
           // auth cache
           BasicScheme basicAuth = new BasicScheme();
@@ -178,7 +184,7 @@ public class HTTP extends BaseStep implements StepInterface {
             body = "";
             break;
           default:
-            HttpEntity entity = httpResponse.getEntity();
+            org.apache.http.HttpEntity entity = httpResponse.getEntity();
             if ( entity != null ) {
               body = StringUtils.isEmpty( meta.getEncoding() ) ? EntityUtils.toString( entity ) : EntityUtils.toString( entity, meta.getEncoding() );
             } else {
@@ -204,7 +210,7 @@ public class HTTP extends BaseStep implements StepInterface {
             json.put( header.getName(), list );
           }
         }
-        String headerString = json.toJSONString();
+        String headerString = json.toString();
 
         int returnFieldsOffset = rowMeta.size();
         if ( !Utils.isEmpty( meta.getFieldName() ) ) {

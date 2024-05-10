@@ -231,7 +231,7 @@ public class JavaScriptController implements JavaScriptServiceApi {
         ErrorReporter errorReporter = new ToolErrorReporter( false );
         Parser p = new Parser( evn, errorReporter );
         ScriptNode tree = p.parse( source, "", 0 ); // IOException
-        new NodeTransformer().transform( tree );
+        new NodeTransformer().transform( tree,evn);
         // Script result = (Script)compiler.compile(scope, evn, tree, p.getEncodedSource(),false, null);
         return tree;
     }

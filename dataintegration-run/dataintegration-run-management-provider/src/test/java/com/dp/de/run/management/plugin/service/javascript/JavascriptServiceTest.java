@@ -3,11 +3,6 @@ package com.dp.de.run.management.plugin.service.javascript;
 import com.dp.de.run.management.plugin.service.JsonToXmlTest;
 import com.youngdatafan.di.run.management.DiRunManagementApplication;
 import com.youngdatafan.di.run.management.server.service.ProjectExecutorService;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +29,12 @@ import org.pentaho.di.trans.steps.scriptvalues_mod.ScriptValuesModDummy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static org.pentaho.di.trans.steps.script.Script.ABORT_TRANSFORMATION;
 import static org.pentaho.di.trans.steps.script.Script.ERROR_TRANSFORMATION;
@@ -214,7 +215,7 @@ public class JavascriptServiceTest {
         ErrorReporter errorReporter = new ToolErrorReporter( false );
         Parser p = new Parser( evn, errorReporter );
         ScriptNode tree = p.parse( source, "", 0 ); // IOException
-        new NodeTransformer().transform( tree );
+        new NodeTransformer().transform( tree,evn );
         // Script result = (Script)compiler.compile(scope, evn, tree, p.getEncodedSource(),false, null);
         return tree;
     }

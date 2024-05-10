@@ -22,12 +22,12 @@
 
 package org.pentaho.di.plugins.csv.input.step;
 
-import com.youngdatafan.dataintegration.core.util.encryption.DefaultEncryptionUtils;
 import com.github.vfss3.FileServerConfig;
+import com.youngdatafan.dataintegration.core.util.encryption.DefaultEncryptionUtils;
 import org.apache.commons.io.ByteOrderMark;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.BOMInputStream;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.vfs2.FileObject;
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.provider.local.LocalFile;
@@ -47,14 +47,26 @@ import org.pentaho.di.core.vfs.KettleVFS;
 import org.pentaho.di.i18n.BaseMessages;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
-import org.pentaho.di.trans.step.*;
+import org.pentaho.di.trans.step.BaseStep;
+import org.pentaho.di.trans.step.StepDataInterface;
+import org.pentaho.di.trans.step.StepInterface;
+import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.step.StepMetaInterface;
 import org.pentaho.di.trans.steps.fileinput.text.BOMDetector;
 import org.pentaho.di.trans.steps.textfileinput.EncodingType;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInput;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputField;
 import org.pentaho.di.trans.steps.textfileinput.TextFileInputMeta;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -902,8 +914,7 @@ public class CsvInput extends BaseStep implements StepInterface {
             FileObject fileObject = KettleVFS.getFileObject( meta.getFilename(), getTransMeta(), FileServerConfig.getFileSystemOptions(meta.getFileServerType(),meta.getFtpUsername(), DefaultEncryptionUtils.decrypt(meta.getFtpPassword())));
             if ( !( fileObject instanceof LocalFile) ) {
                 // 先将远程文件写入到本地临时目录
-                try(InputStream inputStream = fileObject.getContent().getInputStream();
-                    FileOutputStream outputStream = new FileOutputStream(tmpFilePath)) {
+                try (InputStream inputStream = fileObject.getContent().getInputStream(); FileOutputStream outputStream = new FileOutputStream(tmpFilePath)) {
                     IOUtils.copy(inputStream, outputStream);
                     outputStream.flush();
                     IOUtils.closeQuietly(outputStream);

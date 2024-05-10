@@ -1,28 +1,20 @@
 package com.youngdatafan.di.run.management.steps.gzipCsvFileInput.controller;
 
 import com.csvreader.CsvReader;
+import com.github.vfss3.FileServerConfig;
 import com.youngdatafan.dataintegration.core.model.Result;
 import com.youngdatafan.dataintegration.core.util.StatusCode;
 import com.youngdatafan.dataintegration.core.util.encryption.DefaultEncryptionUtils;
 import com.youngdatafan.dataintegration.core.util.json.JSONLinkedObject;
 import com.youngdatafan.dataintegration.core.util.json.XML;
-import com.github.vfss3.FileServerConfig;
 import com.youngdatafan.di.run.management.steps.csvinput.vo.FieldVO;
 import com.youngdatafan.di.run.management.steps.gzipCsvInput.api.GzipCsvInputApi;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream;
 import org.apache.commons.compress.compressors.CompressorInputStream;
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.vfs2.FileObject;
 import org.pentaho.di.core.exception.KettleException;
@@ -36,6 +28,15 @@ import org.pentaho.metastore.stores.xml.XmlMetaStore;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.Node;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**

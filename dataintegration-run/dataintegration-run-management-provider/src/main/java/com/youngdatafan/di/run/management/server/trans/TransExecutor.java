@@ -1,18 +1,11 @@
 package com.youngdatafan.di.run.management.server.trans;
 
+import com.youngdatafan.di.run.management.server.util.AviatorUtils;
+import com.youngdatafan.di.run.management.server.vo.ProjectExecutorParam;
 import com.youngdatafan.kettle.springboot.core.bean.SystemVariablesBean;
 import com.youngdatafan.kettle.springboot.core.properties.SystemVariableProperties;
 import com.youngdatafan.kettle.springboot.core.variable.EngineSystemVariables;
-import com.youngdatafan.di.run.management.server.util.AviatorUtils;
-import com.youngdatafan.di.run.management.server.vo.ProjectExecutorParam;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.logging.DefaultLogLevel;
@@ -27,6 +20,14 @@ import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransAdapter;
 import org.pentaho.di.trans.TransExecutionConfiguration;
 import org.pentaho.di.trans.TransMeta;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 /**

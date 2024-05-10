@@ -1,8 +1,21 @@
 package com.youngdatafan.portal.model.management.basicmodel.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.youngdatafan.dataintegration.core.model.Result;
 import com.youngdatafan.dataintegration.core.util.StatusCode;
-import com.youngdatafan.portal.model.management.basicmodel.dto.*;
+import com.youngdatafan.portal.model.management.basicmodel.dto.AllColumnDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.BasicModelAndColumnsDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.BasicModelAndMetaDataDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.BasicModelCopyDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.BasicModelDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.BasicModelDatasourceDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.BasicModelMetaDataDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.CustomModelDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.GroupDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.ModelNameAndModelFilterDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.SelectModelNameAndColumnCountDTO;
+import com.youngdatafan.portal.model.management.basicmodel.dto.TablesAndViewDTO;
 import com.youngdatafan.portal.model.management.basicmodel.entity.BasiceModel;
 import com.youngdatafan.portal.model.management.basicmodel.entity.DpPortalBasicModelQuerysql;
 import com.youngdatafan.portal.model.management.basicmodel.mapper.BasiceModelMapper;
@@ -28,8 +41,6 @@ import com.youngdatafan.portal.model.management.outmodel.service.OutModelService
 import com.youngdatafan.portal.model.management.util.enums.TrueFalse;
 import com.youngdatafan.portal.model.management.util.factory.sql.SqlJoin;
 import com.youngdatafan.portal.model.management.util.jdbc.JdbcUtils;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.encryption.KettleTwoWayPasswordEncoder;
@@ -42,9 +53,16 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

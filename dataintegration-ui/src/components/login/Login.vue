@@ -3,7 +3,7 @@
     <div class='login_form'>
       <div class="login_logo">
         <img src="static/img/login-logo.png" style="width: 50px;height: 50px">
-        一站式数据集成工具
+        智融航一站式数据治理平台
       </div>
       <div class="login_body">
         <el-form :model="ruleForm" :rules="rules" status-icon ref="ruleForm" label-position="left" label-width="0px"

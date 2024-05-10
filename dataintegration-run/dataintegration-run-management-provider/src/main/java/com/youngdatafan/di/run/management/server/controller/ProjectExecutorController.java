@@ -13,7 +13,7 @@ import com.youngdatafan.di.run.management.server.vo.ProjectStopVO;
 import com.youngdatafan.di.run.management.server.websocket.DePrincipal;
 import com.youngdatafan.portal.common.project.dto.ProjectFileDTO;
 import java.security.Principal;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;

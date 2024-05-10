@@ -25,7 +25,7 @@
         <docker.url>http://10.242.10.181:2375</docker.url>
         <docker.plugin.version>0.4.12</docker.plugin.version>
         <registry.url>10.242.10.181:5000</registry.url>
-        <kettle.version>8.3.0.26-1479</kettle.version>
+        <kettle.version>9.1.0.0-324</kettle.version>
         <aviator.version>4.1.2</aviator.version>
     </properties>
 
@@ -158,6 +158,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino</artifactId>
+            <version>1.7.11</version>
+        </dependency>
 
         <!--mybatis -->
         <dependency>
@@ -261,10 +266,10 @@
         </dependency>
 
         <!-- swagger-ui -->
-     <!--   <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-        </dependency>-->
+        <!--   <dependency>
+               <groupId>io.springfox</groupId>
+               <artifactId>springfox-boot-starter</artifactId>
+           </dependency>-->
 
         <!--sofa boot-->
         <dependency>

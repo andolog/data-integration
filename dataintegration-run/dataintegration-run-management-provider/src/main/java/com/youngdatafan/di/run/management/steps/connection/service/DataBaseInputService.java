@@ -14,7 +14,7 @@ import com.youngdatafan.di.run.management.steps.connect.vo.QueryVO;
 import com.youngdatafan.di.run.management.server.util.SqlUtills;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.pentaho.di.core.database.Database;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.database.DatabaseTestResults;

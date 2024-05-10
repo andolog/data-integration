@@ -11,12 +11,12 @@
 
     <artifactId>FileExists2</artifactId>
 
-  <properties>
-        <kettle.version>8.3.0.26-1479</kettle.version>
+    <properties>
+        <kettle.version>9.1.0.0-324</kettle.version>
         <sofaboot.version>3.3.0</sofaboot.version>
-      <clickhouse.version>0.3.1</clickhouse.version>
-      <postgresql.version>42.2.9</postgresql.version>
-      <oracle.version>19.8.0.0</oracle.version>
+        <clickhouse.version>0.3.1</clickhouse.version>
+        <postgresql.version>42.2.9</postgresql.version>
+        <oracle.version>19.8.0.0</oracle.version>
     </properties>
     <dependencies>
         <!--核心依赖包-->
@@ -39,12 +39,17 @@
             <version>${kettle.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>pentaho-kettle</groupId>
+            <artifactId>metastore</artifactId>
+            <version>${kettle.version}</version>
+        </dependency>
 
-    <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>5.1.46</version>
-    </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.46</version>
+        </dependency>
 
         <!--postgresql-->
         <dependency>
@@ -70,54 +75,60 @@
             <version>${clickhouse.version}</version>
         </dependency>
 
-    <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
-    <dependency>
-        <groupId>commons-net</groupId>
-        <artifactId>commons-net</artifactId>
-        <version>3.6</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.6</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
 
-    <dependency>
-        <groupId>com.young-datafan</groupId>
-        <artifactId>s3-connector</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </dependency>
-</dependencies>
+        <dependency>
+            <groupId>com.young-datafan</groupId>
+            <artifactId>s3-connector</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
-<build>
-<plugins>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <configuration>
-            <skip>true</skip>
-        </configuration>
-    </plugin>
-    <plugin>
-        <groupId>com.alipay.sofa</groupId>
-        <artifactId>sofa-ark-plugin-maven-plugin</artifactId>
-        <version>1.1.0</version>
-        <executions>
-            <execution>
-                <id>default-cli</id>
-                <goals>
-                    <goal>ark-plugin</goal>
-                </goals>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
-                    <!-- configure exported class -->
-                    <classifier>ark-plugin</classifier>
-                    <exported>
-                        <!-- configure class-level exported class -->
-                        <packages>
-                            <package>org.pentaho.di.plugins.fileExists</package>
-                        </packages>
-                    </exported>
+                    <skip>true</skip>
                 </configuration>
-            </execution>
-        </executions>
-    </plugin>
-</plugins>
-</build>
+            </plugin>
+            <plugin>
+                <groupId>com.alipay.sofa</groupId>
+                <artifactId>sofa-ark-plugin-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>ark-plugin</goal>
+                        </goals>
+
+                        <configuration>
+                            <!-- configure exported class -->
+                            <classifier>ark-plugin</classifier>
+                            <exported>
+                                <!-- configure class-level exported class -->
+                                <packages>
+                                    <package>org.pentaho.di.plugins.fileExists</package>
+                                </packages>
+                            </exported>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

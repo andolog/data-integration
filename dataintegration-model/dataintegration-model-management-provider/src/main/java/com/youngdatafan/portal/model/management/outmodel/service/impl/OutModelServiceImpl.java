@@ -117,7 +117,7 @@ public class OutModelServiceImpl implements OutModelService {
         List<OutModelMetaDataVO> outModelMetaDataVOS = addOutModelVO.getOutModelMetaDataVOS();
 
         if (outModelMapper.insertSelective(outModel) > 0) {
-            if (!org.apache.commons.lang.StringUtils.isEmpty(addOutModelVO.getGroupId())) {
+            if (!org.apache.commons.lang3.StringUtils.isEmpty(addOutModelVO.getGroupId())) {
                 if (outModelMapper.insertModelGroup(outModel.getModelId(), addOutModelVO.getGroupId()) < 0) {
                     throw new RuntimeException("新增失败");
                 }

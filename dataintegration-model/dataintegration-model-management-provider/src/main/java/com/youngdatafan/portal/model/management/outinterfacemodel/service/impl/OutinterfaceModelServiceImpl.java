@@ -490,7 +490,7 @@ public class OutinterfaceModelServiceImpl implements OutinterfaceModelService {
     public List<OutinterfaceModelNameAndCnameDTO> getBasicModel(String userId, String groupName) {
 
         return outinterfaceModelMapper.getBasicModel(userId,
-                org.apache.commons.lang.StringUtils.isEmpty(groupName) ? null : groupName,
+                org.apache.commons.lang3.StringUtils.isEmpty(groupName) ? null : groupName,
                 GroupTypeEnum.JBMX.code(), TrueFalse.T.code());
     }
 

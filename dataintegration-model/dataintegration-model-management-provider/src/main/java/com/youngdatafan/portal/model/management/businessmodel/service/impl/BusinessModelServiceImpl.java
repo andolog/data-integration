@@ -500,7 +500,7 @@ public class BusinessModelServiceImpl implements BusinessModelService {
     public List<BasicModelNameAndCnameDTO> getBasicModel(String userId, String groupName) {
 
         return businessModelMapper.getBasicModel(userId,
-                org.apache.commons.lang.StringUtils.isEmpty(groupName) ? null : groupName,
+                org.apache.commons.lang3.StringUtils.isEmpty(groupName) ? null : groupName,
                 GroupTypeEnum.JBMX.code(), TrueFalse.T.code());
     }
 

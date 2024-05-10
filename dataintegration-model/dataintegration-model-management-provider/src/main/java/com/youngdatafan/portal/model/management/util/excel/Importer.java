@@ -176,13 +176,13 @@ public class Importer implements IImporter {
 
                     basicModelMetaDataDTO.setColumnDescription(basicModelAndMetaDataDTO.getColumnDescription());
 
-                    basicModelMetaDataDTO.setColumnLength(org.apache.commons.lang.StringUtils.isBlank(basicModelAndMetaDataDTO.getColumnLength()) ? null : Integer.valueOf(basicModelAndMetaDataDTO.getColumnLength()));
+                    basicModelMetaDataDTO.setColumnLength(org.apache.commons.lang3.StringUtils.isBlank(basicModelAndMetaDataDTO.getColumnLength()) ? null : Integer.valueOf(basicModelAndMetaDataDTO.getColumnLength()));
 
                     basicModelMetaDataDTO.setModelName(b.getModelName());
 
                     basicModelMetaDataDTO.setColumnName(basicModelAndMetaDataDTO.getColumnName());
 
-                    basicModelMetaDataDTO.setColumnPrecision(org.apache.commons.lang.StringUtils.isEmpty(basicModelAndMetaDataDTO.getColumnPrecision()) ? null : Integer.valueOf(basicModelAndMetaDataDTO.getColumnPrecision()));
+                    basicModelMetaDataDTO.setColumnPrecision(org.apache.commons.lang3.StringUtils.isEmpty(basicModelAndMetaDataDTO.getColumnPrecision()) ? null : Integer.valueOf(basicModelAndMetaDataDTO.getColumnPrecision()));
 
                     basicModelMetaDataDTO.setModelDataSort(basicModelAndMetaDataDTO.getModelDataSort());
 
@@ -192,7 +192,7 @@ public class Importer implements IImporter {
 
 //                    businessModelAndBasicModelName.setBusinessModelEnable(TrueFalse.T.code().equals(basicModelAndMetaDataDTO.getStatistics()) ? TrueFalse.T.code() : TrueFalse.F.code());
                     String d = basicModelAndMetaDataDTO.getDimensionMetric();
-                    if (org.apache.commons.lang.StringUtils.isEmpty(d)) {
+                    if (org.apache.commons.lang3.StringUtils.isEmpty(d)) {
                         basicModelMetaDataDTO.setDimensionMetric(DimensionMetricEnum.NULL.code());
                     } else {
                         basicModelMetaDataDTO.setDimensionMetric(DimensionMetricEnum.METRIC.code().equals(d) ? DimensionMetricEnum.METRIC.code() : DimensionMetricEnum.DIMENSION.code());
@@ -227,14 +227,14 @@ public class Importer implements IImporter {
 
                 String[] strings = engineDatasourceIds.toArray(new String[]{});
 
-                String  str= org.apache.commons.lang.StringUtils.join(strings,",");
+                String  str= org.apache.commons.lang3.StringUtils.join(strings,",");
 
                 throw new RuntimeException(basiceModel.getDsName() + "非默认执行引擎数据源,请使用"+str);
             }
 
             String groupId = groupMapper.selectGroupIdByGroupNameAndUserId(userId, basicModelCopyDTO.getGroupType(), type);
 
-            if (org.apache.commons.lang.StringUtils.isEmpty(groupId)) {
+            if (org.apache.commons.lang3.StringUtils.isEmpty(groupId)) {
                 throw new RuntimeException(basicModelCopyDTO.getGroupType() + "分组类型不存在");
             }
             String modelName = basiceModelMapper.selectModelNameByUserIdAndCname(userId, basicModelCopyDTO.getCName(), type, groupId);
@@ -370,7 +370,7 @@ public class Importer implements IImporter {
 
             String tableName = businessModelMapper.selectTableNameByModelNameAndGroupName(userId, businessModelAndBasicModelName.getBasicModelName(), businessModelAndBasicModelName.getBasicModelGroup());
 
-            if (org.apache.commons.lang.StringUtils.isEmpty(tableName)) {
+            if (org.apache.commons.lang3.StringUtils.isEmpty(tableName)) {
                 throw new RuntimeException(businessModelAndBasicModelName.getBasicModelName() + "基础模型查找不到");
             }
 
@@ -421,13 +421,13 @@ public class Importer implements IImporter {
 
             String modelName = businessModelMapper.selectBasicModelIdByModelNameAndGroupName(userId, businessModelAndBasicModelName.getBasicModelName(), businessModelAndBasicModelName.getBasicModelGroup());
 
-            if (org.apache.commons.lang.StringUtils.isEmpty(modelName)) {
+            if (org.apache.commons.lang3.StringUtils.isEmpty(modelName)) {
                 throw new RuntimeException(businessModelAndBasicModelName.getBasicModelName() + "基础模型查找不到");
             }
 
             String groupId = groupMapper.selectGroupIdByGroupNameAndUserId(userId, businessModelAndBasicModelName.getBusinessModelGroupName(), GroupTypeEnum.YWMX.code());
 
-            if (org.apache.commons.lang.StringUtils.isEmpty(groupId)) {
+            if (org.apache.commons.lang3.StringUtils.isEmpty(groupId)) {
                 throw new RuntimeException(businessModelAndBasicModelName.getBusinessModelGroupName() + "分组查找不到");
             }
 

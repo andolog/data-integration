@@ -94,7 +94,7 @@ public class SupersetForwardServiceImpl implements SupersetForwardService {
                 //通过数据库名称去查询superset数据库的dbid;
                 dbId = getAllDataSources(datasource.getDsName());
             }
-            if (org.apache.commons.lang.StringUtils.isEmpty(dbId)) {
+            if (org.apache.commons.lang3.StringUtils.isEmpty(dbId)) {
                 throw new RuntimeException("获取数据源为空");
             }
 
